@@ -21,18 +21,32 @@ const Section = styled(motion.section)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem;
+  padding: 2rem 0;
   position: relative;
 `;
 
-const AnimatedSection = ({ children }) => {
+const NoSetHeightSection = styled(motion.section)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+`;
+
+const AnimatedSection = ({ children, noHeightSet }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
 
   return (
-    <Section
+    noHeightSet ? <NoSetHeightSection
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8 }}
+    >
+      {children}
+    </NoSetHeightSection> : <Section
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -42,6 +56,7 @@ const AnimatedSection = ({ children }) => {
     </Section>
   );
 };
+
 
 const LandingPage = () => {
   return (
@@ -55,10 +70,10 @@ const LandingPage = () => {
       <AnimatedSection>
         <Services />
       </AnimatedSection>
-      <AnimatedSection>
+      <AnimatedSection noHeightSet>
         <Portfolio />
       </AnimatedSection>
-      <AnimatedSection>
+      <AnimatedSection noHeightSet>
         <Contact />
       </AnimatedSection>
     </PageContainer>

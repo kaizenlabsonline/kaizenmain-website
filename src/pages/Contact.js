@@ -6,7 +6,7 @@ import useWeb3Forms from "@web3forms/react";
 import { data } from 'react-router-dom';
 
 const ContactSection = styled.section`
-  padding: 5rem 10%;
+  padding-bottom: 5rem;
 `;
 
 const ContactForm = styled(motion.form)`
@@ -40,6 +40,7 @@ const SubmitButton = styled(motion.button)`
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-left: 0.75rem;
 
   &:hover {
     background-color: #00b8cc;
