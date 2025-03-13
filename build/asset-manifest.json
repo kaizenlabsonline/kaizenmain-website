@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/kaizenmain-website/static/css/main.e6c13ad2.css",
+    "main.js": "/kaizenmain-website/static/js/main.7e692a2e.js",
+    "static/js/453.f441de3e.chunk.js": "/kaizenmain-website/static/js/453.f441de3e.chunk.js",
+    "static/media/landingPage.gif": "/kaizenmain-website/static/media/landingPage.6abc9761ad048a58e8f7.gif",
+    "static/media/homepage.gif": "/kaizenmain-website/static/media/homepage.b93a1a7529658e9bbaae.gif",
+    "static/media/portfolio.gif": "/kaizenmain-website/static/media/portfolio.2b0e722d2627009ca5c8.gif",
+    "static/media/KaizenLabsLogo.png": "/kaizenmain-website/static/media/KaizenLabsLogo.8f8db022f5548c5c11ff.png",
+    "index.html": "/kaizenmain-website/index.html",
+    "main.e6c13ad2.css.map": "/kaizenmain-website/static/css/main.e6c13ad2.css.map",
+    "main.7e692a2e.js.map": "/kaizenmain-website/static/js/main.7e692a2e.js.map",
+    "453.f441de3e.chunk.js.map": "/kaizenmain-website/static/js/453.f441de3e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.7e692a2e.js"
+  ]
+}
