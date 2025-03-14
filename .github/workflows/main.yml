@@ -36,4 +36,3 @@ jobs:
           server-dir: /public_html/
           dangerous-clean-slate: true
           server-dotfiles: true
-
