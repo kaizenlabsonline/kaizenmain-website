@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     color: ${props => props.theme.colors.text};
-    background-color: ${props => props.theme.colors.primary};
+    background-color: #000011;
     margin: 0;
     padding: 0;
   }

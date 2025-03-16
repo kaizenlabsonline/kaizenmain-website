@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import logoImg from '../assets/KaizenLabsLogo.png';
 
 const StyledHeader = styled.header`
-  background-color: rgba(26, 43, 60, 0.9);
+  background-color: #000011;
   position: fixed;
   width: 100%;
   z-index: 1000;
@@ -39,6 +39,7 @@ const NavList = styled.ul`
 
 const NavItem = styled.li`
   margin-left: 2rem;
+  cursor: pointer;
 `;
 
 const NavLink = styled.a`
@@ -52,6 +53,7 @@ const NavLink = styled.a`
 `;
 
 const Header = () => {
+
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -74,7 +76,7 @@ const Header = () => {
             <NavLink onClick={() => scrollToSection('home')}>Home</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink onClick={() => scrollToSection('services')}>Services</NavLink>
+            <NavLink onClick={() => scrollToSection('about-us')}>About Us</NavLink>
           </NavItem>
           <NavItem>
             <NavLink onClick={() => scrollToSection('portfolio')}>Portfolio</NavLink>

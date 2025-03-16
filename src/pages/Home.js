@@ -1,28 +1,25 @@
-import React from 'react';
+import React, { useMemo, useRef } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import landingPageGif from '../assets/landingPage.gif'; // Import your GIF file
+import { Canvas, useFrame } from '@react-three/fiber';
+import * as THREE from 'three';
 
 const HomeWrapper = styled.div`
   position: relative;
   height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  background-color: #000011;
 `;
 
-const BackgroundGif = styled.div`
+const CanvasWrapper = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(${landingPageGif});
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.7;
-  z-index: -1;
 `;
 
 const HomeContent = styled.div`
@@ -30,49 +27,71 @@ const HomeContent = styled.div`
   position: relative;
   z-index: 1;
   padding: 2rem;
-  color: white; // Ensure text is visible against the background
+  color: white;
 `;
 
-const Title = styled(motion.h1)`
+const Title = styled.h1`
   font-size: 3rem;
   margin-bottom: 1rem;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5); // Add shadow for better readability
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
 `;
 
-const Subtitle = styled(motion.p)`
+const Subtitle = styled.p`
   font-size: 1.2rem;
   margin-bottom: 2rem;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5); // Add shadow for better readability
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
 `;
 
-const CTAButton = styled(motion.button)`
-  background-color: ${props => props.theme.colors.accent};
-  color: ${props => props.theme.colors.primary};
+const CTAButton = styled.button`
+  background-color: rgba(0, 255, 255, 0.2);
+  color: white;
   padding: 0.8rem 2rem;
   border: none;
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 
   &:hover {
-    background-color: #00b8cc;
+    background-color: rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
   }
 `;
+
+function Stars() {
+  const ref = useRef();
+  const [geometry, material] = useMemo(() => {
+    const geometry = new THREE.BufferGeometry();
+    const vertices = [];
+    for (let i = 0; i < 5000; i++) {
+      vertices.push(THREE.MathUtils.randFloatSpread(2000)); // x
+      vertices.push(THREE.MathUtils.randFloatSpread(2000)); // y
+      vertices.push(THREE.MathUtils.randFloatSpread(2000)); // z
+    }
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+    const material = new THREE.PointsMaterial({ color: 0x00ffff, size: 2 });
+    return [geometry, material];
+  }, []);
+
+  useFrame((state) => {
+    ref.current.rotation.x = state.clock.getElapsedTime() * 0.05;
+    ref.current.rotation.y = state.clock.getElapsedTime() * 0.075;
+  });
+
+  return <points ref={ref} geometry={geometry} material={material} />;
+}
 
 const Home = () => {
   return (
     <HomeWrapper>
-      <BackgroundGif />
+      <CanvasWrapper>
+        <Canvas camera={{ position: [0, 0, 1] }}>
+          <Stars />
+        </Canvas>
+      </CanvasWrapper>
       <HomeContent>
         <Title>Elevate Your Digital Presence</Title>
         <Subtitle>Expert web development and project management solutions</Subtitle>
-        <CTAButton
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Get Started
-        </CTAButton>
       </HomeContent>
     </HomeWrapper>
   );

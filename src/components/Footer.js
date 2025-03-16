@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FooterSection = styled.footer`
-  background: linear-gradient(135deg, #4A69BD, #F08A5D);
   color: white;
   padding: 2rem 10%;
   text-align: center;
@@ -36,9 +35,7 @@ const Footer = () => {
       <FooterContainer>
         <p>&copy; 2025 KaizenLabs. All rights reserved.</p>
         <SocialLinks>
-          <SocialLink href="https://www.linkedin.com/company/kaizenlabs" target="_blank" rel="noopener noreferrer">LinkedIn</SocialLink>
-          <SocialLink href="https://twitter.com/kaizenlabs" target="_blank" rel="noopener noreferrer">Twitter</SocialLink>
-          <SocialLink href="https://www.instagram.com/kaizenlabs" target="_blank" rel="noopener noreferrer">Instagram</SocialLink>
+          <SocialLink href="https://www.linkedin.com/company/kaizen-labs-pty-ltd" target="_blank" rel="noopener noreferrer">LinkedIn</SocialLink>
         </SocialLinks>
       </FooterContainer>
     </FooterSection>

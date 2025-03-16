@@ -1,234 +1,214 @@
-import React, { useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
-import portfolioImg from '../assets/portfolio.gif';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const PortfolioSection = styled.section`
-  padding: 4rem 10%;
-  background: linear-gradient(135deg, #4A69BD, #F08A5D);
-  color: white;
-`;
-
-const SectionTitle = styled.h2`
-  font-size: 2.5rem;
-  text-align: center;
-  margin-bottom: 3rem;
-`;
-
-const PortfolioGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
-`;
-
-const PortfolioItem = styled(motion.div)`
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
   position: relative;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  color: #e0f4ff;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: #000011;
 `;
 
-const PortfolioImage = styled.img`
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-`;
-
-const PortfolioTitle = styled.h3`
-  padding: 1rem;
-  text-align: center;
-`;
-
-const PortfolioDetails = styled(motion.div)`
+const ParticleBackground = styled.canvas`
   position: absolute;
-  top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 `;
 
-const ClientsSection = styled.div`
-  margin-top: 4rem;
+const PortfolioWrapper = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
 `;
 
-const ClientsTitle = styled.h2`
-  font-size: 2.5rem;
-  text-align: center;
-  margin-bottom: 2rem;
-`;
-
-const ClientsContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  
-  @media (max-width: 768px) {
-    flex-direction: column;
+const SectionTitle = styled(motion.h2)`
+  font-size: 2.8rem;
+  margin-bottom: 0;
+  color: #00f7ff;
+  text-shadow: 0 0 15px rgba(0, 247, 255, 0.4);
+  position: relative;
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    margin-top: 1rem;
   }
 `;
 
-const ClientsList = styled.div`
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
+const StyledSpan = styled(motion.span)`
+  position: relative;
+  top: -13rem;
 `;
-
-const ClientItem = styled(motion.div)`
-  background-color: rgba(255, 255, 255, 0.2);
-  padding: 1.5rem;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 1.2rem;
-  font-weight: 500;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-5px);
-  }
-`;
-
-const IllustrationContainer = styled.div`
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Illustration = styled(motion.img)`
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-`;
-
-const portfolioVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
-const detailsVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
-const clientVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.5,
-    },
-  }),
-};
-
-const illustrationVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: { 
-    opacity: 1, 
-    scale: 1,
-    transition: {
-      duration: 0.8,
-      delay: 0.3,
-    }
-  },
-};
 
 const Portfolio = () => {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
-  const projects = [
-    { title: 'E-Commerce Platform', image: 'https://via.placeholder.com/300x200', description: 'A fully responsive online store with integrated payment processing' },
-    { title: 'Corporate Website', image: 'https://via.placeholder.com/300x200', description: 'Modern web presence for a Fortune 500 company' },
-    { title: 'Mobile Application', image: 'https://via.placeholder.com/300x200', description: 'Cross-platform app with real-time data synchronization' },
-  ];
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const canvasRef = useRef(null);
 
   const clients = [
-    'Co-op',
-    'AstraZeneca',
-    '1Insurer',
-    'CPA',
-    'NAB',
-    'Services Australia',
-    'Telstra',
-    'Manchester Airport Group',
-    'Co-op Digital',
+    'Co-op', 'AstraZeneca', '1Insurer', 'CPA', 'NAB',
+    'Services Australia', 'Telstra', 'Manchester Airport Group', 'Co-op Digital',
   ];
+
+  const drawRocket = (ctx, x, y, color) => {
+    // Draw rocket body
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x - 15, y + 50);
+    ctx.lineTo(x + 15, y + 50);
+    ctx.closePath();
+    ctx.fill();
+  
+    // Draw rocket tip
+    ctx.fillStyle = '#ff6b6b';
+    ctx.beginPath();
+    ctx.moveTo(x, y - 20);
+    ctx.lineTo(x - 10, y);
+    ctx.lineTo(x + 10, y);
+    ctx.closePath();
+    ctx.fill();
+  
+    // Draw fins
+    ctx.fillStyle = '#4a90e2';
+    ctx.beginPath();
+    ctx.moveTo(x - 15, y + 50);
+    ctx.lineTo(x - 25, y + 70);
+    ctx.lineTo(x - 15, y + 60);
+    ctx.closePath();
+    ctx.fill();
+  
+    ctx.beginPath();
+    ctx.moveTo(x + 15, y + 50);
+    ctx.lineTo(x + 25, y + 70);
+    ctx.lineTo(x + 15, y + 60);
+    ctx.closePath();
+    ctx.fill();
+  
+    // Draw window
+    ctx.fillStyle = 'white';
+    ctx.beginPath();
+    ctx.arc(x, y + 20, 5, 0, Math.PI * 2);
+    ctx.fill();
+  
+    // Draw smoke
+    ctx.fillStyle = 'rgba(200, 200, 200, 0.5)';
+    for (let i = 0; i < 5; i++) {
+      ctx.beginPath();
+      ctx.arc(x + Math.random() * 10 - 5, y + 60 + Math.random() * 20, Math.random() * 5 + 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  };
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    let animationFrameId;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    const particleCount = 1000;
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 0.02 + 0.6,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5
+      });
+    }
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(particle => {
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+
+        particle.x += particle.dx;
+        particle.y += particle.dy;
+
+        if (particle.x < 0 || particle.x > canvas.width) particle.dx *= -1;
+        if (particle.y < 0 || particle.y > canvas.height) particle.dy *= -1;
+      });
+
+      clients.forEach((client, index) => {
+        const x = (canvas.width / (clients.length + 1)) * (index + 1);
+        const y = canvas.height / 2 + Math.sin(Date.now() * 0.001 + index) * 30;
+        drawRocket(ctx, x, y * 1.3, `hsl(${index * 40}, 70%, 50%)`);
+        
+        ctx.fillStyle = 'white';
+        ctx.font = '12px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(client, x, y + 80);
+      });
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [clients]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 100
+      }
+    }
+  };
 
   return (
     <PortfolioSection>
-      {/* <SectionTitle>Our Work</SectionTitle>
-      <PortfolioGrid>
-        {projects.map((project, index) => (
-          <PortfolioItem
-            key={index}
-            variants={portfolioVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            onHoverStart={() => setHoveredIndex(index)}
-            onHoverEnd={() => setHoveredIndex(null)}
-          >
-            <PortfolioImage src={project.image} alt={project.title} />
-            <PortfolioTitle>{project.title}</PortfolioTitle>
-            <AnimatePresence>
-              {hoveredIndex === index && (
-                <PortfolioDetails
-                  variants={detailsVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="hidden"
-                >
-                  <h4>{project.title}</h4>
-                  <p>{project.description}</p>
-                </PortfolioDetails>
-              )}
-            </AnimatePresence>
-          </PortfolioItem>
-        ))}
-      </PortfolioGrid> */}
-      
-      <ClientsSection>
-        <ClientsTitle>Clients We've Worked With</ClientsTitle>
-        <ClientsContainer>
-          <ClientsList>
-            {clients.map((client, index) => (
-              <ClientItem
-                key={index}
-                custom={index}
-                variants={clientVariants}
-                initial="hidden"
-                animate="visible"
-              >
-                {client}
-              </ClientItem>
-            ))}
-          </ClientsList>
-          <IllustrationContainer>
-            <Illustration 
-              src={portfolioImg}
-              alt="Web Development Illustration"
-              variants={illustrationVariants}
-              initial="hidden"
-              animate="visible"
-            />
-          </IllustrationContainer>
-        </ClientsContainer>
-      </ClientsSection>
+      <ParticleBackground ref={canvasRef} />
+      <PortfolioWrapper>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <SectionTitle variants={itemVariants}>
+            <StyledSpan
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.5 }}
+            >
+              Clients We've Worked With
+            </StyledSpan>
+          </SectionTitle>
+        </motion.div>
+      </PortfolioWrapper>
     </PortfolioSection>
   );
 };

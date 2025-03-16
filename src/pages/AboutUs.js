@@ -1,166 +1,208 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const AboutUsSection = styled.section`
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #4A69BD, #F08A5D);
-  color: white;
-  padding: 6rem 0;
+  color: #e0f4ff;
+  display: flex;
+  align-items: center;
 `;
 
-const BackgroundShape = styled(motion.div)`
+const ParticleBackground = styled.canvas`
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 50%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 0;
 `;
 
 const AboutUsWrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 0 2rem;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 `;
 
 const SectionTitle = styled(motion.h2)`
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
+  font-size: 2.8rem;
+  margin-bottom: 3rem;
+  color: #00f7ff;
+  text-shadow: 0 0 15px rgba(0, 247, 255, 0.4);
+  position: relative;
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    margin-top: 1rem;
+  }
 `;
 
 const Paragraph = styled(motion.p)`
   font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 `;
 
 const SubTitle = styled(motion.h3)`
   font-size: 1.8rem;
   color: #00e5ff;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin: 3rem 0 1.5rem;
+  position: relative;
+  padding-left: 1.2rem;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 80%;
+    border-radius: 3px;
+  }
 `;
 
 const List = styled(motion.ul)`
   list-style-type: none;
   padding-left: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
 `;
 
 const ListItem = styled(motion.li)`
   font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-  padding-left: 1.5em;
+  padding: 1.5rem;
+  background: rgba(0, 55, 110, 0.2);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 247, 255, 0.1);
   position: relative;
-  
-  &:before {
-    content: "•";
-    color: #00e5ff;
-    font-weight: bold;
-    position: absolute;
-    left: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(0, 55, 110, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 247, 255, 0.1);
+  }
+
+  &::before {
+    content: '▹';
+    color: #00f7ff;
+    margin-right: 0.8rem;
   }
 `;
 
-const ImageContainer = styled(motion.div)`
-  display: flex;
-  justify-content: center;
-  margin: 3rem 0;
-`;
-
-const AboutUsImage = styled(motion.img)`
-  max-width: 80%;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+const GlowOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 `;
 
 const AboutUs = () => {
   const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    let animationFrameId;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    const particleCount = 1000;
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 0.02 + 0.6,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5
+      });
+    }
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(particle => {
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+
+        particle.x += particle.dx;
+        particle.y += particle.dy;
+
+        if (particle.x < 0 || particle.x > canvas.width) particle.dx *= -1;
+        if (particle.y < 0 || particle.y > canvas.height) particle.dy *= -1;
+      });
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: 0.1,
+        delayChildren: 0.3
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5
-      }
-    }
-  };
-
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-        delay: 0.3
+        type: 'spring',
+        stiffness: 100
       }
     }
   };
 
   return (
     <AboutUsSection>
-      {/* Background animated shapes */}
-      <BackgroundShape 
-        style={{ 
-          top: '10%', 
-          left: '5%', 
-          width: '300px', 
-          height: '300px',
-          y
-        }}
-        animate={{ 
-          x: [0, 20, 0], 
-          y: [0, 30, 0],
-          rotate: [0, 10, 0]
-        }}
-        transition={{ 
-          repeat: Infinity, 
-          duration: 20,
-          ease: "easeInOut"
-        }}
-      />
-      <BackgroundShape 
-        style={{ 
-          bottom: '10%', 
-          right: '5%', 
-          width: '250px', 
-          height: '250px' 
-        }}
-        animate={{ 
-          x: [0, -20, 0], 
-          y: [0, -20, 0],
-          rotate: [0, -10, 0]
-        }}
-        transition={{ 
-          repeat: Infinity, 
-          duration: 15,
-          ease: "easeInOut"
-        }}
-      />
-      
+      <ParticleBackground ref={canvasRef} />
+      <GlowOverlay />
       <AboutUsWrapper>
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
-          <SectionTitle variants={itemVariants}>About Us: Empowering Digital Excellence</SectionTitle>
+          <SectionTitle variants={itemVariants}>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.5 }}
+            >
+              Pioneering Digital Evolution
+            </motion.span>
+          </SectionTitle>
           
           <Paragraph variants={itemVariants}>
             At KaizenLabs, we're not just another IT consultancy – we're your partners in digital transformation. Born from a passion for continuous improvement, our name embodies the Japanese philosophy of "Kaizen" – small, incremental changes that lead to significant results.
