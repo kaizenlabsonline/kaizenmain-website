@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const AboutUsSection = styled.section`
   position: relative;
@@ -8,6 +8,8 @@ const AboutUsSection = styled.section`
   color: #e0f4ff;
   display: flex;
   align-items: center;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
 `;
 
 const ParticleBackground = styled.canvas`
@@ -105,12 +107,9 @@ const GlowOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
 `;
 
 const AboutUs = () => {
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -192,7 +191,7 @@ const AboutUs = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true}}
         >
           <SectionTitle variants={itemVariants}>
             <motion.span

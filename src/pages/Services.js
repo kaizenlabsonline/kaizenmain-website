@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const GameSection = styled.section`
   background: linear-gradient(179deg, #070d25, #020210);
   color: #e0f4ff;
-  padding: 2rem;
   height: 80vh;
   position: relative;
   overflow: hidden;

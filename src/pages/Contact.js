@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useForm } from "react-hook-form";
 import useWeb3Forms from "@web3forms/react";
 
@@ -18,7 +18,7 @@ const ParticleBackground = styled.canvas`
   top: 0;
   left: 0;
   width: 100%;
-  height: 60vh;
+  height: 100vh;
   z-index: 0;
 `;
 
@@ -102,8 +102,6 @@ const Contact = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [result, setResult] = useState(null);
   const canvasRef = useRef(null);
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
   const accessKey = "89834c80-96b2-4cac-8e7e-674236ce9bba";
 
@@ -133,7 +131,7 @@ const Contact = () => {
     canvas.height = window.innerHeight;
 
     const particles = [];
-    const particleCount = 1000;
+    const particleCount = 500;
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
@@ -211,7 +209,6 @@ const Contact = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
         >
           <SectionTitle variants={itemVariants}>
             <motion.span

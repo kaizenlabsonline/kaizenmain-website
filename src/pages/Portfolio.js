@@ -116,7 +116,7 @@ const Portfolio = () => {
     canvas.height = window.innerHeight;
 
     const particles = [];
-    const particleCount = 1000;
+    const particleCount = 500;
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
@@ -196,7 +196,6 @@ const Portfolio = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
         >
           <SectionTitle variants={itemVariants}>
             <StyledSpan
