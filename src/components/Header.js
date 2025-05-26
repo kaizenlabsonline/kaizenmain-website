@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import logoImg from '../assets/KaizenLabsLogo.png';
+// import logoImg from '../assets/KaizenLabsLogo.png';
+import logoImg from '../assets/kaizenLogoNew.png';
+import { Link } from 'react-router-dom';
 
 const StyledHeader = styled.header`
   background-color: #000011;
@@ -28,9 +30,17 @@ const Logo = styled(motion.div)`
   align-items: center;
 `;
 
+const LogoImg = styled.img`
+  width: 112px;
+  height: 70px;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  `;
+
 const LogoText = styled.p`
   margin-left: 4rem;
-  margin-top: 0;
+  margin-top: -3rem;
   @media (max-width: 768px) {
     display: none;
   }
@@ -127,14 +137,11 @@ const Header = () => {
   return (
     <StyledHeader>
       <Nav>
-        <Logo
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <Link to="/">
+          <LogoImg src={logoImg} alt="KaizenLabs Logo" />
           <LogoText>KaizenLabs</LogoText>
-        </Logo>
-        
+        </Link>
+
         <Hamburger 
           $isMenuOpen={isMenuOpen} 
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -146,13 +153,18 @@ const Header = () => {
 
         <NavList $isMenuOpen={isMenuOpen}>
           <NavItem>
-            <NavLink onClick={() => scrollToSection('home')}>Home</NavLink>
+            <NavLink onClick={() => scrollToSection('home')} href="/">Home</NavLink>
           </NavItem>
           <NavItem>
             <NavLink onClick={() => scrollToSection('about-us')}>About Us</NavLink>
           </NavItem>
           <NavItem>
             <NavLink onClick={() => scrollToSection('portfolio')}>Portfolio</NavLink>
+          </NavItem>
+          <NavItem>
+            <Link to='/mp4-to-pdf' style={{ textDecoration: 'none', color: 'inherit', padding: '0 1rem', display: 'block' }} onClick={() => setIsMenuOpen(false)}>
+              Office apps
+            </Link>
           </NavItem>
           <NavItem>
             <NavLink onClick={() => scrollToSection('contact')}>Contact</NavLink>
