@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.4efb37a3.css",
-    "main.js": "/static/js/main.96912813.js",
+    "main.js": "/static/js/main.cf1db959.js",
     "static/js/52.bc6ac5ec.chunk.js": "/static/js/52.bc6ac5ec.chunk.js",
     "static/js/82.dd006cf4.chunk.js": "/static/js/82.dd006cf4.chunk.js",
     "static/js/239.6c31f169.chunk.js": "/static/js/239.6c31f169.chunk.js",
     "static/js/206.0c4623f1.chunk.js": "/static/js/206.0c4623f1.chunk.js",
-    "static/media/kaizenLogoNew.png": "/static/media/kaizenLogoNew.6813de614b5187ea597c.png",
+    "static/media/kaizenLogoNew.png": "/static/media/kaizenLogoNew.f3ff034f88e391338db4.png",
     "index.html": "/index.html"
   },
   "entrypoints": [
     "static/css/main.4efb37a3.css",
-    "static/js/main.96912813.js"
+    "static/js/main.cf1db959.js"
   ]
 }

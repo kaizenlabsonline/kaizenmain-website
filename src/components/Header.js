@@ -31,16 +31,18 @@ const Logo = styled(motion.div)`
 `;
 
 const LogoImg = styled.img`
-  width: 112px;
+  width: auto;
   height: 70px;
   background-size: cover;
   display: flex;
   align-items: center;
   `;
 
-const LogoText = styled.p`
+const LogoText = styled.h3`
   margin-left: 4rem;
   margin-top: -3rem;
+  font-size: 1rem;
+  font-weight: 600;
   @media (max-width: 768px) {
     display: none;
   }
