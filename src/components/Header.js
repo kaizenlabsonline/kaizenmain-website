@@ -230,6 +230,11 @@ const Header = () => {
                 </Link>
               </SubNavItem>
               <SubNavItem>
+                <Link to="/random-picker" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => { setIsMenuOpen(false); setIsSubMenuOpen(false); }}>
+                  Random Picker
+                </Link>
+              </SubNavItem>
+              <SubNavItem>
                 <Link to="/motiv-mate" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => { setIsMenuOpen(false); setIsSubMenuOpen(false); }}>
                   MotivMate
                 </Link>

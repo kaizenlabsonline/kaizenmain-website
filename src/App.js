@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import LandingPage from './LandingPage';
 import MP4ToPDF from './pages/MP4ToPDF';
 import MotivMate from './pages/MotivMate';
+import RandomPicker from './pages/RandomPicker';
 
 const theme = {
   colors: {
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/mp4-to-pdf" element={<MP4ToPDF />} />
+        <Route path="/random-picker" element={<RandomPicker />} />
         <Route path="/motiv-mate" element={<MotivMate />} />
       </Routes>
       <Footer />
