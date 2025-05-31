@@ -31,8 +31,8 @@ const PortfolioWrapper = styled.div`
 const SectionTitle = styled(motion.h2)`
   font-size: 2.8rem;
   margin-bottom: 0;
-  color: #00f7ff;
-  text-shadow: 0 0 15px rgba(0, 247, 255, 0.4);
+  color: #e0f4ff;
+  text-shadow: 0 0 15px #e0f4ff;
   position: relative;
   &::after {
     content: '';

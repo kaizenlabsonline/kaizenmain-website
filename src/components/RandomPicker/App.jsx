@@ -94,7 +94,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="header-margin min-h-screen bg-gradient-to-br from-black via-indigo-900/20 to-black text-gray-200 flex flex-col items-center justify-center p-4 selection:bg-blue-500 selection:text-white">
+    <div className="header-margin min-h-screen text-gray-200 flex flex-col items-center justify-center p-4 selection:bg-blue-500 selection:text-white">
       <div className="bg-neutral-900/80 backdrop-blur-sm shadow-2xl rounded-xl p-6 sm:p-10 w-full max-w-xl space-y-8 border border-neutral-700/50">
         <header>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-center">

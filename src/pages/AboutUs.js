@@ -32,7 +32,7 @@ const AboutUsWrapper = styled.div`
 const SectionTitle = styled(motion.h2)`
   font-size: 2.8rem;
   margin-bottom: 3rem;
-  color: #00f7ff;
+  color: #e0f4ff;
   text-shadow: 0 0 15px rgba(0, 247, 255, 0.4);
   position: relative;
   &::after {
@@ -53,7 +53,7 @@ const Paragraph = styled(motion.p)`
 
 const SubTitle = styled(motion.h3)`
   font-size: 1.8rem;
-  color: #00e5ff;
+  color: #e0f4ff;
   margin: 3rem 0 1.5rem;
   position: relative;
   padding-left: 1.2rem;
