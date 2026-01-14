@@ -195,8 +195,8 @@ const Header = () => {
           <LogoText>KaizenLabs</LogoText>
         </Link>
 
-        <Hamburger 
-          $isMenuOpen={isMenuOpen} 
+        <Hamburger
+          $isMenuOpen={isMenuOpen}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <span />
@@ -231,7 +231,17 @@ const Header = () => {
               </SubNavItem>
               <SubNavItem>
                 <Link to="/random-picker" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => { setIsMenuOpen(false); setIsSubMenuOpen(false); }}>
-                  Random Picker
+                  Decision Spinner
+                </Link>
+              </SubNavItem>
+              <SubNavItem>
+                <Link to="/planning-poker" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => { setIsMenuOpen(false); setIsSubMenuOpen(false); }}>
+                  Planning Poker
+                </Link>
+              </SubNavItem>
+              <SubNavItem>
+                <Link to="/retro-board" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => { setIsMenuOpen(false); setIsSubMenuOpen(false); }}>
+                  Retro Board
                 </Link>
               </SubNavItem>
               <SubNavItem>

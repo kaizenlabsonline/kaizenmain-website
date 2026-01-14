@@ -11,7 +11,7 @@ const HomeWrapper = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background-color: #000011;
+  background-color: #050505;
 `;
 
 const CanvasWrapper = styled.div`

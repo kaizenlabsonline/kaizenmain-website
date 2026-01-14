@@ -8,6 +8,8 @@ import LandingPage from './LandingPage';
 import MP4ToPDF from './pages/MP4ToPDF';
 import MotivMate from './pages/MotivMate';
 import RandomPicker from './pages/RandomPicker';
+import PlanningPoker from './pages/PlanningPoker';
+import RetroBoard from './pages/RetroBoard';
 
 const theme = {
   colors: {
@@ -26,6 +28,8 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/mp4-to-pdf" element={<MP4ToPDF />} />
         <Route path="/random-picker" element={<RandomPicker />} />
+        <Route path="/planning-poker" element={<PlanningPoker />} />
+        <Route path="/retro-board" element={<RetroBoard />} />
         <Route path="/motiv-mate" element={<MotivMate />} />
       </Routes>
       <Footer />

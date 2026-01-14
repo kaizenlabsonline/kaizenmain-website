@@ -2,7 +2,7 @@ import React, { useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import RandomPicker from '../components/RandomPicker/App'; // Adjust the import path as necessary
+import RandomPicker from '../components/DecisionSpinner/App';
 
 const RandomPickerWrapper = styled.div`
   position: relative;
