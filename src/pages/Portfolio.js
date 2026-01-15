@@ -160,7 +160,10 @@ const Portfolio = () => {
       x: startX + (spacing * i),
       // Assign meaningful colors based on index or brand (simplified here)
       color: `hsl(${200 + i * 20}, 80%, 60%)`, // Blue/Cyan/Purple range
-      index: i
+      index: i,
+      // Stagger vertical position to prevent label overlap
+      // Alternating 0, 40, 80 pixels down
+      verticalOffset: (i % 3) * 40
     }));
   }, [dimensions.width, clients]);
 
@@ -247,33 +250,7 @@ const Portfolio = () => {
       </SceneContainer>
 
       {/* HTML Label Layer */}
-      <LabelContainer>
-        {rocketData.map((data) => (
-          <ClientLabel
-            key={data.name}
-            color={data.color}
-            style={{
-              left: `calc(50% + ${data.x}px)`, // Offset from center
-            }}
-            // Animate label to float BELOW the rocket
-            // Rocket floats at Y=0 (center) +/- 8px
-            // Label should be below that, e.g., +80px
-            animate={{
-              y: [70, 85, 70] // Float range
-            }}
-            transition={{
-              duration: 2, // Must match rocket frequency? Rocket period is based on sin(t).
-              // Actually hard to sync perfectly without shared state.
-              // But a gentle float is fine even if not perfectly synced.
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: data.index * 0.2
-            }}
-          >
-            <span>{data.name}</span>
-          </ClientLabel>
-        ))}
-      </LabelContainer>
+
 
     </PortfolioSection>
   );

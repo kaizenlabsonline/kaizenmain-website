@@ -1,6 +1,6 @@
 import React, { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Environment, Cloud, Float, Sparkles, Stars } from '@react-three/drei';
+import { Environment, Cloud, Float, Sparkles, Stars, Html } from '@react-three/drei';
 import { EffectComposer, Bloom, Noise, Vignette, ToneMapping } from '@react-three/postprocessing';
 import * as THREE from 'three';
 
@@ -231,7 +231,7 @@ const SciFiLanderModel = ({ materials }) => {
 
 // --- MAIN WRAPPER WITH WAVE MOTION ---
 
-const RocketVariant = ({ type, position, color, index, materials }) => {
+const RocketVariant = ({ type, position, color, index, materials, name }) => {
     const group = useRef();
     const cloudsRef = useRef();
 
@@ -240,6 +240,9 @@ const RocketVariant = ({ type, position, color, index, materials }) => {
         if (group.current) {
             // ROTATION
             group.current.rotation.y = t * 0.1 + index;
+            // Creative Tilt: Bank (Z) and Pitch (X)
+            group.current.rotation.z = Math.sin(t * 0.2 + index) * 0.2;
+            group.current.rotation.x = Math.sin(t * 0.15 + index * 2) * 0.15;
 
             // WAVE MOTION: A sine wave offset by index
             // Slower frequency (0.5) for majestic "heavy" float
@@ -260,8 +263,33 @@ const RocketVariant = ({ type, position, color, index, materials }) => {
             {type === 'artemis' && <ArtemisModel materials={materials} />}
             {type === 'spacejet' && <SpaceJetModel materials={materials} />}
             {type === 'lander' && <SciFiLanderModel materials={materials} />}
-
             <PlumeComponent />
+
+            {/* HTML Label - Synced to Rocket Group */}
+            <Html
+                position={[0, -2.5 - (index % 3), 0]} // Base offset + Stagger
+                center
+                style={{
+                    pointerEvents: 'none',
+                    whiteSpace: 'nowrap',
+                }}
+            >
+                <div style={{
+                    fontFamily: 'Arial, sans-serif',
+                    fontWeight: 'bold',
+                    fontSize: '14px',
+                    color: '#ffffff',
+                    textShadow: `0 0 8px rgba(0,0,0,0.8), 0 0 15px ${color}`,
+                    textAlign: 'center',
+                    background: 'rgba(0,0,0,0.3)',
+                    padding: '4px 12px',
+                    borderRadius: '12px',
+                    backdropFilter: 'blur(4px)',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                }}>
+                    {name}
+                </div>
+            </Html>
         </group>
     );
 };
@@ -348,6 +376,7 @@ const Rocket3DScene = ({ clients, dimensions }) => {
                     type={getRocketType(i)}
                     index={clientData.index}
                     color={clientData.color}
+                    name={clientData.name}
                     position={[clientData.x / 40, 0, 0]}
                     materials={materials}
                 />
