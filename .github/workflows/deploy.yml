@@ -20,16 +20,38 @@ jobs:
 
       - name: Deploy to Eco Hosting
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        continue-on-error: true
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./build/
           server-dir: ${{ secrets.SERVER_DIR }}
-          dangerous-clean-slate: true
+          dangerous-clean-slate: false
           server-dotfiles: true
-          protocol: ftps
+          protocol: ftp
           port: 21
+          log-level: verbose
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.DS_Store
+      
+      - name: Retry deployment if failed
+        if: failure()
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./build/
+          server-dir: ${{ secrets.SERVER_DIR }}
+          dangerous-clean-slate: false
+          server-dotfiles: true
+          protocol: ftp
+          port: 21
+          log-level: verbose
           exclude: |
             **/.git*
             **/.git*/**
