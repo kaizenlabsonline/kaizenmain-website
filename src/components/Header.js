@@ -245,6 +245,21 @@ const Header = () => {
                 </Link>
               </SubNavItem>
               <SubNavItem>
+                <Link to="/json-swiss-knife" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => { setIsMenuOpen(false); setIsSubMenuOpen(false); }}>
+                  JSON Swiss Knife
+                </Link>
+              </SubNavItem>
+              <SubNavItem>
+                <Link to="/timezone-map" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => { setIsMenuOpen(false); setIsSubMenuOpen(false); }}>
+                  Time Zone Map
+                </Link>
+              </SubNavItem>
+              <SubNavItem>
+                <Link to="/pomodoro-timer" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => { setIsMenuOpen(false); setIsSubMenuOpen(false); }}>
+                  Pomodoro Timer
+                </Link>
+              </SubNavItem>
+              <SubNavItem>
                 <Link to="/motiv-mate" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => { setIsMenuOpen(false); setIsSubMenuOpen(false); }}>
                   MotivMate
                 </Link>

@@ -2,6 +2,7 @@ import React, { useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import { getCosmicTextures } from '../components/CosmicAssets';
 
 const HomeWrapper = styled.div`
   position: relative;
@@ -69,7 +70,8 @@ function Stars() {
       vertices.push(THREE.MathUtils.randFloatSpread(2000)); // z
     }
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-    const material = new THREE.PointsMaterial({ color: 0x00ffff, size: 2 });
+    // Reduced size from 2 to 1.2 to fix "square" artifact
+    const material = new THREE.PointsMaterial({ color: 0x00ffff, size: 1.2, transparent: true, opacity: 0.8 });
     return [geometry, material];
   }, []);
 
@@ -81,12 +83,65 @@ function Stars() {
   return <points ref={ref} geometry={geometry} material={material} />;
 }
 
+
+
+function CosmicBackground() {
+  // Reduced count significantly to avoid clutter
+  const count = 5;
+  const group = useRef();
+
+  // Memoize textures so we don't recreate them every frame
+  const textures = useMemo(() => getCosmicTextures(), []);
+
+  const objects = useMemo(() => {
+    return Array.from({ length: count }).map(() => {
+      const type = ['orb', 'nebulaRed', 'galaxyPurple', 'goldCluster'][Math.floor(Math.random() * 4)];
+      return {
+        position: [
+          THREE.MathUtils.randFloatSpread(250), // Much wider spread
+          THREE.MathUtils.randFloatSpread(150),
+          THREE.MathUtils.randFloatSpread(120)
+        ],
+        type: type,
+        texture: textures[type],
+        scale: Math.random() * 10 + 5, // Even bigger
+        opacity: Math.random() * 0.3 + 0.1 // Much fainter (0.1 - 0.4)
+      };
+    });
+  }, [textures]);
+
+  useFrame((state) => {
+    if (group.current) {
+      group.current.rotation.y = state.clock.getElapsedTime() * 0.02;
+    }
+  });
+
+  return (
+    <group ref={group}>
+      {objects.map((obj, i) => (
+        <sprite key={i} position={obj.position} scale={[obj.scale, obj.scale, 1]}>
+          <spriteMaterial
+            map={obj.texture}
+            transparent={true}
+            opacity={obj.opacity}
+            blending={THREE.AdditiveBlending}
+            depthWrite={false}
+          />
+        </sprite>
+      ))}
+    </group>
+  );
+}
+
 const Home = () => {
   return (
     <HomeWrapper>
       <CanvasWrapper>
-        <Canvas camera={{ position: [0, 0, 1] }}>
+        <Canvas camera={{ position: [0, 0, 50] }}>
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} intensity={1} />
           <Stars />
+          <CosmicBackground />
         </Canvas>
       </CanvasWrapper>
       <HomeContent>

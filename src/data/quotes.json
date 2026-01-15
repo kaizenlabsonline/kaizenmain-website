@@ -1,0 +1,222 @@
+[
+    {
+        "category": "collaboration",
+        "text": "Alone for speed, together for distance.",
+        "author": "African Proverb"
+    },
+    {
+        "category": "collaboration",
+        "text": "Great things in business are never done by one person.",
+        "author": "Steve Jobs"
+    },
+    {
+        "category": "collaboration",
+        "text": "Individual commitment to a group effort—that is what makes a team work.",
+        "author": "Vince Lombardi"
+    },
+    {
+        "category": "collaboration",
+        "text": "None of us is as smart as all of us.",
+        "author": "Ken Blanchard"
+    },
+    {
+        "category": "collaboration",
+        "text": "Politeness is the poison of collaboration.",
+        "author": "Edwin Land"
+    },
+    {
+        "category": "collaboration",
+        "text": "No one can whistle a symphony. It takes a whole orchestra to play it.",
+        "author": "H.E. Luccock"
+    },
+    {
+        "category": "collaboration",
+        "text": "Strategy is not a solo sport, even if you’re the CEO.",
+        "author": "Max McKeown"
+    },
+    {
+        "category": "collaboration",
+        "text": "It is literally true that you can succeed best and quickest by helping others to succeed.",
+        "author": "Napolean Hill"
+    },
+    {
+        "category": "collaboration",
+        "text": "If you want to lift yourself up, lift up someone else.",
+        "author": "Booker T. Washington"
+    },
+    {
+        "category": "collaboration",
+        "text": "Cooperation is the thorough conviction that nobody can get there unless everybody gets there.",
+        "author": "Virginia Burden"
+    },
+    {
+        "category": "collaboration",
+        "text": "Synergy is better than my way or your way. It’s our way.",
+        "author": "Stephen Covey"
+    },
+    {
+        "category": "collaboration",
+        "text": "The strength of the team is each individual member. The strength of each member is the team.",
+        "author": "Phil Jackson"
+    },
+    {
+        "category": "growth",
+        "text": "Failure is simply the opportunity to begin again, this time more intelligently.",
+        "author": "Henry Ford"
+    },
+    {
+        "category": "growth",
+        "text": "It does not matter how slowly you go as long as you do not stop.",
+        "author": "Confucius"
+    },
+    {
+        "category": "growth",
+        "text": "Continuous improvement is better than delayed perfection.",
+        "author": "Mark Twain"
+    },
+    {
+        "category": "growth",
+        "text": "A delayed game is eventually good, but a rushed game is forever bad.",
+        "author": "Shigeru Miyamoto"
+    },
+    {
+        "category": "growth",
+        "text": "Simplicity is the soul of efficiency.",
+        "author": "Austin Freeman"
+    },
+    {
+        "category": "growth",
+        "text": "Make it work, make it right, make it fast.",
+        "author": "Kent Beck"
+    },
+    {
+        "category": "growth",
+        "text": "First, solve the problem. Then, write the code.",
+        "author": "John Johnson"
+    },
+    {
+        "category": "growth",
+        "text": "The only way to go fast, is to go well.",
+        "author": "Robert C. Martin"
+    },
+    {
+        "category": "growth",
+        "text": "Code is like humor. When you have to explain it, it’s bad.",
+        "author": "Cory House"
+    },
+    {
+        "category": "growth",
+        "text": "Optimism is an occupational hazard of programming: feedback is the treatment.",
+        "author": "Kent Beck"
+    },
+    {
+        "category": "growth",
+        "text": "Don’t comment bad code—rewrite it.",
+        "author": "Brian Kernighan"
+    },
+    {
+        "category": "growth",
+        "text": "Experience is the name everyone gives to their mistakes.",
+        "author": "Oscar Wilde"
+    },
+    {
+        "category": "focus",
+        "text": "Focus is a matter of deciding what things you're NOT going to do.",
+        "author": "John Carmack"
+    },
+    {
+        "category": "focus",
+        "text": "Productivity is being able to do things that you were never able to do before.",
+        "author": "Franz Kafka"
+    },
+    {
+        "category": "focus",
+        "text": "Amateurs sit and wait for inspiration, the rest of us just get up and go to work.",
+        "author": "Stephen King"
+    },
+    {
+        "category": "focus",
+        "text": "You can do anything, but not everything.",
+        "author": "David Allen"
+    },
+    {
+        "category": "focus",
+        "text": "The key is not to prioritize what's on your schedule, but to schedule your priorities.",
+        "author": "Stephen Covey"
+    },
+    {
+        "category": "focus",
+        "text": "Until we can manage time, we can manage nothing else.",
+        "author": "Peter Drucker"
+    },
+    {
+        "category": "focus",
+        "text": "Absorb what is useful, discard what is not, add what is uniquely your own.",
+        "author": "Bruce Lee"
+    },
+    {
+        "category": "focus",
+        "text": "Simplicity is the ultimate sophistication.",
+        "author": "Leonardo da Vinci"
+    },
+    {
+        "category": "focus",
+        "text": "Don't watch the clock; do what it does. Keep going.",
+        "author": "Sam Levenson"
+    },
+    {
+        "category": "focus",
+        "text": "Action is the foundational key to all success.",
+        "author": "Pablo Picasso"
+    },
+    {
+        "category": "focus",
+        "text": "Lost time is never found again.",
+        "author": "Benjamin Franklin"
+    },
+    {
+        "category": "focus",
+        "text": "Either you run the day or the day runs you.",
+        "author": "Jim Rohn"
+    },
+    {
+        "category": "rest",
+        "text": "Rest is not idleness, and to lie sometimes on the grass under trees... is by no means a waste of time.",
+        "author": "Old Proverb"
+    },
+    {
+        "category": "rest",
+        "text": "Tension is who you think you should be. Relaxation is who you are.",
+        "author": "Chinese Proverb"
+    },
+    {
+        "category": "rest",
+        "text": "Almost everything will work again if you unplug it for a few minutes, including you.",
+        "author": "Anne Lamott"
+    },
+    {
+        "category": "rest",
+        "text": "Take rest; a field that has rested gives a bountiful crop.",
+        "author": "Ovid"
+    },
+    {
+        "category": "rest",
+        "text": "There is virtue in work and there is virtue in rest. Use both and overlook neither.",
+        "author": "Alan Cohen"
+    },
+    {
+        "category": "rest",
+        "text": "Resting is part of the work.",
+        "author": "Unknown"
+    },
+    {
+        "category": "rest",
+        "text": "Sometimes the most productive thing you can do is relax.",
+        "author": "Mark Black"
+    },
+    {
+        "category": "rest",
+        "text": "Breathe. You're doing okay.",
+        "author": "Unknown"
+    }
+]

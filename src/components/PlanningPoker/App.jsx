@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
+import MotivMateWidget from '../MotivMate/MotivMateWidget';
 
 const FIBONACCI = ['1', '2', '3', '5', '8', '13', '21', '?', '☕'];
 
@@ -285,6 +286,7 @@ const PlanningPoker = () => {
                     </div>
                 </div>
             )}
+            <MotivMateWidget category="collaboration" position="bottom" />
         </div>
     );
 };

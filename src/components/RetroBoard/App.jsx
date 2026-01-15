@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { jsPDF } from 'jspdf';
+import MotivMateWidget from '../MotivMate/MotivMateWidget';
 
 const COLUMNS = [
     { id: 'start', title: 'Start Doing', color: 'bg-green-600', icon: '🚀' },
@@ -175,6 +176,7 @@ const App = () => {
                     </div>
                 ))}
             </div>
+            <MotivMateWidget category="growth" position="bottom" />
         </div>
     );
 };
